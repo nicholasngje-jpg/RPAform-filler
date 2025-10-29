@@ -1,6 +1,7 @@
-from flask import Flask, render_template, request
+from flask import Flask, render_template, request, redirect, url_for, flash, session
 
 app = Flask(__name__)
+app.secret_key = 'your_secret_key'  # Required for flashing messages
 
 @app.route('/')
 def index():
@@ -13,7 +14,8 @@ def submit():
     company = request.form['company']
     amount = request.form['amount']
     print(f"Received: {name}, {email}, {company}, {amount}")
-    return f"Thanks! Your invoice has been submitted."
+    flash("Thanks! Your invoice has been submitted.")
+    return redirect(url_for('index'))
 
 if __name__ == '__main__':
     app.run()
