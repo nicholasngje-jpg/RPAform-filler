@@ -5,6 +5,17 @@
 </head>
 <body>
   <h2>Invoice Submission</h2>
+
+  {% with messages = get_flashed_messages() %}
+    {% if messages %}
+      <ul class="flashes">
+        {% for message in messages %}
+          <li>{{ message }}</li>
+        {% endfor %}
+      </ul>
+    {% endif %}
+  {% endwith %}
+
   <form action="/submit" method="post">
     <label for="name">Name:</label><br>
     <input type="text" id="name" name="name"><br><br>
